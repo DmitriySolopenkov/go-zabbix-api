@@ -1,1 +1,4 @@
 .vagrant/
+.idea
+.DS_Store
+.travis.yml_
