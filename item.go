@@ -10,35 +10,25 @@ type (
 	ItemType int
 	// ValueType type of information of the item
 	ValueType int
-	// DataType data type of the item
-	DataType int
-	// DeltaType value that will be stored
-	DeltaType int
+	// AuthTypeHTTP type HTTP agent authentication method possible values
+	AuthTypeHTTP int
 )
 
 const (
 	// Different item type, see :
-	// - "type" in https://www.zabbix.com/documentation/3.2/manual/api/reference/item/object
-	// - https://www.zabbix.com/documentation/3.2/manual/config/items/itemtypes
+	// - "type" in https://www.zabbix.com/documentation/6.0/en/manual/api/reference/item/object
+	// - https://www.zabbix.com/documentation/6.0/en/manual/config/items/itemtypes
 
 	// ZabbixAgent type
 	ZabbixAgent ItemType = 0
-	// SNMPv1Agent type
-	SNMPv1Agent ItemType = 1
 	// ZabbixTrapper type
 	ZabbixTrapper ItemType = 2
 	// SimpleCheck type
 	SimpleCheck ItemType = 3
-	// SNMPv2Agent type
-	SNMPv2Agent ItemType = 4
 	// ZabbixInternal type
 	ZabbixInternal ItemType = 5
-	// SNMPv3Agent type
-	SNMPv3Agent ItemType = 6
 	// ZabbixAgentActive type
 	ZabbixAgentActive ItemType = 7
-	// ZabbixAggregate type
-	ZabbixAggregate ItemType = 8
 	// WebItem type
 	WebItem ItemType = 9
 	// ExternalCheck type
@@ -54,16 +44,22 @@ const (
 	// Calculated type
 	Calculated ItemType = 15
 	// JMXAgent type
-	JMXAgent  ItemType = 16
-	SNMPTrap  ItemType = 17
+	JMXAgent ItemType = 16
+	// SNMPTrap type
+	SNMPTrap ItemType = 17
+	// Dependent type
 	Dependent ItemType = 18
+	// HTTPAgent type
 	HTTPAgent ItemType = 19
+	// SNMPAgent type
 	SNMPAgent ItemType = 20
+	// Script type
+	Script ItemType = 21
 )
 
 const (
 	// Type of information of the item
-	// see "value_type" in https://www.zabbix.com/documentation/3.2/manual/api/reference/item/object
+	// see "value_type" in https://www.zabbix.com/documentation/6.0/en/manual/api/reference/item/object
 
 	// Float value
 	Float ValueType = 0
@@ -78,35 +74,23 @@ const (
 )
 
 const (
-	// Data type of the item
-	// see "data_type" in https://www.zabbix.com/documentation/3.2/manual/api/reference/item/object
-
-	// Decimal data (default)
-	Decimal DataType = 0
-	// Octal data
-	Octal DataType = 1
-	// Hexadecimal data
-	Hexadecimal DataType = 2
-	// Boolean data
-	Boolean DataType = 3
-)
-
-const (
-	// Value that will be stored
-	// see "delta" in https://www.zabbix.com/documentation/3.2/manual/api/reference/item/object
+	// Value "HTTP agent authentication method possible values"
+	// see "authtype" in https://www.zabbix.com/documentation/6.0/en/manual/api/reference/item/object
 
 	// AsIs as is (default)
-	AsIs DeltaType = 0
-	// Speed speed per second
-	Speed DeltaType = 1
-	// Delta simple change
-	Delta DeltaType = 2
+	AsIs AuthTypeHTTP = 0
+	// Basic
+	Basic AuthTypeHTTP = 1
+	// NTLM
+	NTLM AuthTypeHTTP = 2
+	// Kerberos
+	Kerberos AuthTypeHTTP = 2
 )
 
 type HttpHeaders map[string]string
 
 // Item represent Zabbix item object
-// https://www.zabbix.com/documentation/3.2/manual/api/reference/item/object
+// https://www.zabbix.com/documentation/6.0/en/manual/api/reference/item/object
 type Item struct {
 	ItemID       string    `json:"itemid,omitempty"`
 	Delay        string    `json:"delay"`
